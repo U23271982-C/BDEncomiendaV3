@@ -176,6 +176,7 @@ VALUES
 (9, 9, '2023-04-16', 'Sucursal Huancayo', 2),
 (10, 10, '2023-05-02', 'Sucursal Tumbes', 1);
 /*HistorialDeEnvios*/
+SELECT * FROM HistorialDeEnvios
 INSERT INTO HistorialDeEnvios (HistorialEnvioID, EncomiendaID, Fecha, Estado)
 VALUES
 (1, 1, '2023-01-01', 'Entregado'),
@@ -188,12 +189,136 @@ VALUES
 (8, 8, '2023-04-01', 'Entregado'),
 (9, 9, '2023-04-10', 'Entregado'),
 (10, 10, '2023-05-01', 'Entregado');
+/*Rutas*/
+INSERT INTO Rutas (RutaID, Origen, Destino, Distancia, TiempoEstimado, FechaCreación)
+VALUES
+(1, 'Sucursal Lima', 'Sucursal Arequipa', 1000, 18, '2023-01-01'),
+(2, 'Sucursal Lima', 'Sucursal Cusco', 1100, 20, '2023-01-01'),
+(3, 'Sucursal Trujillo', 'Sucursal Piura', 500, 8, '2022-05-01'),
+(4, 'Sucursal Chiclayo', 'Sucursal Tacna', 1500, 24, '2023-03-10'),
+(5, 'Sucursal Huancayo', 'Sucursal Lima', 300, 6, '2023-03-10'),
+(6, 'Sucursal Arequipa', 'Sucursal Cusco', 450, 7, '2023-02-01'),
+(7, 'Sucursal Lima', 'Sucursal Tumbes', 1300, 22, '2023-04-01'),
+(8, 'Sucursal Ica', 'Sucursal Piura', 800, 15, '2023-01-01'),
+(9, 'Sucursal Cusco', 'Sucursal Arequipa', 450, 8, '2023-03-10'),
+(10, 'Sucursal Tacna', 'Sucursal Chiclayo', 1600, 26, '2022-05-01');
+/*TipoRutas*/
+INSERT INTO TiposDeRutas(TipoRutaID, Descripción)
+VALUES
+(1, 'Interprovincial'),
+(2, 'Interregional'),
+(3, 'Urbana'),
+(4, 'Internacional'),
+(5, 'Especial');
+/*RutasProgramadas*/
+INSERT INTO RutasProgramadas (RutaProgramadaID, RutaID, TipoRutaID, FechaInicio, FechaFin)
+VALUES
+(1, 1,1, '2023-01-01 08:00:00', '2023-01-02 02:00:00'),
+(2, 2,2, '2023-01-15 07:00:00', '2023-01-16 03:00:00'),
+(3, 3,3, '2023-02-01 06:00:00', '2023-02-01 14:00:00'),
+(4, 4,4, '2023-02-10 05:00:00', '2023-02-11 07:00:00'),
+(5, 5,5, '2023-03-01 08:00:00', '2023-03-01 14:00:00'),
+(6, 6,1, '2023-03-10 09:00:00', '2023-03-10 16:00:00'),
+(7, 7,2, '2023-03-15 10:00:00', '2023-03-16 08:00:00'),
+(8, 8,3, '2023-04-01 07:30:00', '2023-04-01 22:00:00'),
+(9, 9,4, '2023-04-10 06:00:00', '2023-04-10 14:00:00'),
+(10, 10,5, '2023-05-01 05:00:00', '2023-05-02 07:00:00');
+/*ReportesRutas*/
+INSERT INTO ReportesRutas (ReporteRutaID, RutaID, Fecha, DistanciaRecorrida, TiempoTotal)
+VALUES
+(1, 1, '2023-01-02', 103.2, 10),
+(2, 2, '2023-01-16', 1005.2, 10),
+(3, 3, '2023-02-01', 103.2, 7),
+(4, 4, '2023-02-11', 103.2, 12),
+(5, 5, '2023-03-01', 103.2, 6),
+(6, 6, '2023-03-10', 103.2, 5),
+(7, 7, '2023-03-16', 103.2, 3),
+(8, 8, '2023-04-01', 103.2, 10),
+(9, 9, '2023-04-10', 103.2, 8),
+(10, 10, '2023-05-02', 103.2, 9);
 
-
-
-
+/*ParadasRutas*/
+INSERT INTO ParadasRuta (ParadaID, RutaID,Ubicación, TiempoEstimado)
+VALUES
+(1, 1, 'Parada 1: Chincha', 30),
+(2, 1, 'Parada 2: Ica', 45),
+(3, 2, 'Parada 1: Abancay', 20),
+(4, 3, 'Parada 1: Lambayeque', 15),
+(5, 4, 'Parada 1: Moquegua', 40),
+(6, 5, 'Parada 1: La Oroya', 25),
+(7, 6, 'Parada 1: Puno', 30),
+(8, 7, 'Parada 1: Tumbes', 50),
+(9, 8, 'Parada 1: Chimbote', 35),
+(10, 9, 'Parada 1: Cusco', 20);
+/*RatroEncomienda*/
+INSERT INTO RastreoEncomiendas
+(RastreoID, EncomiendaID, VehículoID, RutaID, FechaHora, Ubicación, EstadoEnRuta)
+VALUES
+(1, 1, 1, 1, '2023-01-02', 'Chincha', 'En tránsito hacia Arequipa.'),
+(2, 2, 3, 3, '2023-01-16', 'Cusco','Entregado exitosamente.'),
+(3, 3, 1, 1, '2023-02-01', 'Chimbote','En camino hacia destino final.'),
+(4, 4, 2, 2, '2023-02-10', 'Puno','Pendiente por documentación.'),
+(5, 5, 1, 1, '2023-03-01', 'La Oroya','Esperando asignación de ruta.'),
+(6, 6, 3, 3, '2023-03-10', 'Moquegua','Entregado sin inconvenientes.'),
+(7, 7, 2, 2, '2023-03-15', 'Lambayeque','Retraso por condiciones climáticas.'),
+(8, 8, 1, 1, '2023-04-01', 'Abancay','En tránsito.'),
+(9, 9, 2, 2, '2023-04-10', 'Ica','Problemas con la dirección.'),
+(10, 10, 1, 1, '2023-05-01', 'Chincha','En ruta hacia destino final.');
+/*RastreoUbicacion*/
+INSERT INTO RastreoUbicación(UbicaciónID, RastreoID, FechaHora, Ubicación)
+VALUES
+(1, 1, '2023-01-02 10:00:00', 'Sucursal Lima'),
+(2, 1, '2023-01-02 14:00:00', 'Chincha'),
+(3, 2, '2023-01-15 16:00:00', 'Sucursal Arequipa'),
+(4, 3, '2023-02-01 18:00:00', 'Sucursal Trujillo'),
+(5, 4, '2023-02-10 09:00:00', 'Sucursal Cusco'),
+(6, 5, '2023-03-01 12:00:00', 'Sucursal Piura'),
+(7, 6, '2023-03-10 14:00:00', 'Sucursal Chiclayo'),
+(8, 7, '2023-03-15 10:30:00', 'Tumbes'),
+(9, 8, '2023-04-01 11:00:00', 'Chimbote'),
+(10, 9, '2023-04-10 15:00:00', 'Sucursal Arequipa');
+/*RastreoDetalles*/
+INSERT INTO RastreoDetalles (DetalleRastreoID, RastreoID, FechaHora, Detalle)
+VALUES
+(1, 1, '2023-01-01 08:00:00', 'Todo en orden.'),
+(2, 1, '2023-01-01 12:00:00', 'Descarga parcial.'),
+(3, 2, '2023-01-15 16:30:00', 'Cliente satisfecho.'),
+(4, 3, '2023-02-01 10:00:00', 'Ruta confirmada.'),
+(5, 4, '2023-02-10 09:30:00', 'Pendiente de firma.'),
+(6, 5, '2023-03-01 13:00:00', 'Asignación de conductor.'),
+(7, 6, '2023-03-10 14:30:00', 'Entrega sin problemas.'),
+(8, 7, '2023-03-15 11:00:00', 'Ruta retrasada.'),
+(9, 8, '2023-04-01 15:00:00', 'Avance en tiempo.'),
+(10, 9,'2023-04-10 16:00:00', 'Error en datos de cliente.');
+/*RastreoHistorial*/
+INSERT INTO RastreoHistorial (HistorialRastreoID, RastreoID, Fecha, Estado, Ubicación)
+VALUES
+(1, 1, '2023-01-02', 'Pendiente', 'Piura'),
+(2, 2, '2023-01-16', 'En tránsito', 'San Borja'),
+(3, 3, '2023-02-01', 'Pendiente', 'Túcume'),
+(4, 4, '2023-02-10', 'Pendiente', 'Callao'),
+(5, 5, '2023-03-01', 'Pendiente', 'Andahuayalas'),
+(6, 6, '2023-03-10', 'En tránsito', 'Cerro de Pasco'),
+(7, 7, '2023-03-15', 'En tránsito', 'Chimbote'),
+(8, 8, '2023-04-01', 'Pendiente', 'Ucayali'),
+(9, 9, '2023-04-10', 'Pendiente', 'Loreto'),
+(10, 10, '2023-05-01', 'En tránsito', 'Iquitos');
+/*GarantiaEncomiendas*/
+INSERT INTO GarantiaEncomiendas (GarantiaID, EncomiendaID, ValorAsegurado)
+VALUES
+(1, 1, 100.00),
+(2, 2, 250.00),
+(3, 3, 500.00),
+(4, 4, 150.00),
+(5, 5, 300.00),
+(6, 6, 200.00),
+(7, 7, 100.00),
+(8, 8, 400.00),
+(9, 9, 600.00),
+(10, 10, 350.00);
 	COMMIT TRANSACTION;
 END TRY
 BEGIN CATCH
 	IF (XACT_STATE() <> 0) ROLLBACK TRANSACTION;
+	Print CAST(ERROR_MESSAGE() AS VARCHAR)
 END CATCH;
