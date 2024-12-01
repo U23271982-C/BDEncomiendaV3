@@ -1,0 +1,5 @@
+1.Se crean todas las tablas de 'BDEncomiendaV2' sin PK ni FK
+2. Se insertan los datos de las tablas que nesecita la tabla 	principal 'Encomiendo'
+3.Se insertan los datos de la tabla principal 'Encomienda'
+4.Se insertan los datos de las demás tablas. Parte de Israel
+5.Se insertan los datos de las tablas restantes. Parte de Santhiago.
