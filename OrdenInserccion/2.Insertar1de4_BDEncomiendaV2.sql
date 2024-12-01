@@ -14,6 +14,7 @@ VALUES
 ('Artículos de oficina'),
 ('Productos especiales');
 go
+/*Clientes*/
 INSERT INTO Clientes (Nombre,Apellido, Email, Teléfono) 
 VALUES ('Ana','Fernández', 'deftwer@gmail.com','023698541');
 INSERT INTO Clientes (Nombre,Apellido, Email, Teléfono) 
