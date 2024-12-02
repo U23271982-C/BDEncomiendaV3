@@ -10,18 +10,18 @@ BEGIN TRY
 --CLIENTES
 		CREATE TABLE Pais (
 			PaisID INT IDENTITY(1,1),
-			NombrePais NVARCHAR(100)
+			NombrePais NVARCHAR(30)
 		)
 
 		CREATE TABLE Ciudad (
 			CiudadID INT IDENTITY(1,1),
-			NombreCiudad NVARCHAR(100),
+			NombreCiudad NVARCHAR(30),
 		)
 		-----------------------------------------
 		CREATE TABLE Direcciones (
 			DirecciónID INT IDENTITY(1,1),
-			Calle NVARCHAR(150),
-			Provincia NVARCHAR(100),
+			Calle NVARCHAR(50),
+			Provincia NVARCHAR(20),
 			Ciudad INT,
 			Pais INT,
 			CódigoPostal NVARCHAR(20)
@@ -29,9 +29,9 @@ BEGIN TRY
 		
 		CREATE TABLE Clientes (
 			ClienteID INT IDENTITY(1,1),
-			Nombre NVARCHAR(100),
-			Apellido NVARCHAR(100),
-			Email NVARCHAR(150),
+			Nombre NVARCHAR(30),
+			Apellido NVARCHAR(30),
+			Email NVARCHAR(100),
 			Teléfono NVARCHAR(20),
 			DirecciónID INT 
 		)
@@ -61,14 +61,14 @@ BEGIN TRY
 			HistorialID INT IDENTITY(1,1),
 			ClienteID INT,
 			Fecha DATETIME,
-			Descripción NVARCHAR(250)
+			Descripción NVARCHAR(100)
 		)
 
 		CREATE TABLE ContactosClientes (
 			ContactoID INT IDENTITY(1,1),
 			ClienteID INT,
-			NombreContacto NVARCHAR(100),
-			Relación NVARCHAR(50)
+			NombreContacto NVARCHAR(40),
+
 		)
 
 		CREATE TABLE ClientesFrecuentes (
@@ -91,8 +91,8 @@ BEGIN TRY
 		)
 		CREATE TABLE Empleados (
 			EmpleadoID INT IDENTITY(1,1),
-			Nombre NVARCHAR(100),
-			Apellido NVARCHAR(100),
+			Nombre NVARCHAR(30),
+			Apellido NVARCHAR(30),
 			CargoID INT,
 			FechaContratación DATETIME
 		)
@@ -100,7 +100,7 @@ BEGIN TRY
 			HistorialEmpleadoID INT IDENTITY(1,1),
 			EmpleadoID INT,
 			Fecha DATETIME,
-			Evento NVARCHAR(250)
+			Descripción NVARCHAR(120)
 		)
 		
 --ENCOMIENDAS
@@ -130,14 +130,14 @@ BEGIN TRY
 			EncomiendaID INT,
 			EstadoID INT,
 			FechaHora DATETIME,
-			Ubicación NVARCHAR(150)
+			Ubicación NVARCHAR(100)
 		)
 
 		CREATE TABLE Paquetes (
 			PaqueteID INT IDENTITY(1,1),
 			EncomiendaID INT,
 			Peso DECIMAL(10, 2),
-			Dimensiones NVARCHAR(50)
+			Dimensiones NVARCHAR(30)
 		)
 
 		CREATE TABLE GarantiaEncomiendas (
@@ -180,7 +180,7 @@ BEGIN TRY
 
 		CREATE TABLE Vehículos (
 			VehículoID INT IDENTITY(1,1),
-			Placa NVARCHAR(50),
+			Placa NVARCHAR(30),
 			TipoVehículo INT,
 			Capacidad DECIMAL(10, 2),
 			FechaRegistro DATETIME,
@@ -205,8 +205,8 @@ BEGIN TRY
 --RUTAS
 		CREATE TABLE Rutas (
 			RutaID INT IDENTITY(1,1),
-			Origen NVARCHAR(150),
-			Destino NVARCHAR(150),
+			Origen NVARCHAR(100),
+			Destino NVARCHAR(100),
 			Distancia DECIMAL(10, 2),
 			TiempoEstimado INT,  -- En minutos
 			FechaCreación DATETIME
@@ -214,7 +214,7 @@ BEGIN TRY
 		CREATE TABLE ParadasRuta (
 			ParadaID INT IDENTITY(1,1),
 			RutaID INT,
-			Ubicación NVARCHAR(150),
+			Ubicación NVARCHAR(100),
 			TiempoEstimado INT  -- En minutos
 		)
 
@@ -242,16 +242,16 @@ BEGIN TRY
 		CREATE TABLE Almacenes (
 			AlmacénID INT IDENTITY(1,1),
 			Nombre NVARCHAR(100),
-			Ubicación NVARCHAR(150),
+			Ubicación NVARCHAR(100),
 			Capacidad DECIMAL(10, 2)
 		)
 
 		CREATE TABLE Productos (
 			ProductoID INT IDENTITY(1,1),
 			Nombre NVARCHAR(100),
-			Descripción NVARCHAR(250),
+			Descripción NVARCHAR(150),
 			Peso DECIMAL(10, 2),
-			Dimensiones NVARCHAR(50)
+			Dimensiones NVARCHAR(30)
 		)
 
 		CREATE TABLE InventarioAlmacén (
@@ -265,7 +265,7 @@ BEGIN TRY
 		CREATE TABLE HistorialAlmacenes (
 			HistorialID INT IDENTITY(1,1),
 			AlmacénID INT,
-			Evento NVARCHAR(250),
+			Descripción NVARCHAR(100),
 			Fecha DATETIME
 		)
 
@@ -336,7 +336,7 @@ BEGIN TRY
 			DetalleRastreoID INT IDENTITY(1,1),
 			RastreoID INT,
 			FechaHora DATETIME,
-			Detalle NVARCHAR(250)
+			Detalle NVARCHAR(150)
 		)
 
 		CREATE TABLE RastreoHistorial (
